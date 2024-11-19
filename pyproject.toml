@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "fast-api"
+version = "0.1.0"
+description = ""
+authors = ["fajarmh-mf <hamka.fajar@moneyforward.co.jp>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9.6"
+fastapi = "^0.115.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
