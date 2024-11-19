@@ -1,15 +1,20 @@
 [tool.poetry]
-name = "fast-api"
+name = "todo-list-app"
 version = "0.1.0"
 description = ""
 authors = ["fajarmh-mf <hamka.fajar@moneyforward.co.jp>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9.6"
+python = "^3.13"
 fastapi = "^0.115.5"
-
+uvicorn = "^0.32.0"
+pydantic = "^2.9.2"
+email-validator = "^2.2.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+start = "todo_list_app.main:run"

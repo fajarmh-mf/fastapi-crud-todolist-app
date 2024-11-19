@@ -2,6 +2,7 @@ from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
 from email_validator import validate_email, EmailNotValidError
+import uvicorn
 
 app = FastAPI()
 
@@ -31,3 +32,7 @@ def check_email(email: str):
         return { "email": email }
     except EmailNotValidError as e:
         return { "error": str(e) }
+    
+
+def run():
+    uvicorn.run("todo_list_app.main:app", host="127.0.0.1", port=8000, reload=True)
