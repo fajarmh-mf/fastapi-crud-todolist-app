@@ -4,6 +4,8 @@ from sqlmodel import select
 from ..config.db import get_session
 from ..models.model import User
 from pydantic import BaseModel
+from datetime import timedelta
+from ..utils.jwt import create_access_token, decode_access_token
 import bcrypt
 
 router = APIRouter()
@@ -15,7 +17,8 @@ class UserLoginRequest(BaseModel):
 # Define a response model
 class LoginResponse(BaseModel):
     message: str
-
+    access_token: str
+    login: bool
 
 # Register Account
 @router.post("/users/", response_model=User)
@@ -52,8 +55,15 @@ def login(body: UserLoginRequest, session: Session = Depends(get_session)):
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                                 detail="Invalid username or password")
         
+        access_token_expires = timedelta(minutes=30)
+        access_token = create_access_token(data={"sub": user.username}, expires_delta=access_token_expires)
+
         # Return a successful login message
-        return {"message": "Login successful", login: True}
+        return {
+            "message": "Login successful",
+            "access_token": access_token,
+            "login": True
+        }
     
     except HTTPException as e:
         raise e
