@@ -3,14 +3,20 @@ from sqlalchemy.orm import Session
 from sqlmodel import select
 from ..config.db import get_session
 from ..models.user import User
+import bcrypt
 
 router = APIRouter()
 
+
 @router.post("/users/", response_model=User)
 def create_user(user: User, session: Session = Depends(get_session)):
+    hashed = bcrypt.hashpw(user.password.encode('utf-8'), bcrypt.gensalt())
+    user.password = hashed
+
     session.add(user)
     session.commit()
     session.refresh(user)
+    
     return user
 
 @router.get("/users/{user_id}", response_model=User)
