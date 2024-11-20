@@ -5,5 +5,5 @@
  - Fast API
 
 ## ERD
-![ERD_PICTURE](./erd.png)
+![ERD_PICTURE](./erd_fix.png)
 - User one to many to Agenda
