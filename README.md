@@ -6,3 +6,4 @@
 
 ## ERD
 ![ERD_PICTURE](./erd.png)
+- User one to many to Agenda
