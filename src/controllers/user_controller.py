@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlmodel import select
 from ..config.db import get_session
-from ..models.user import User
+from ..models.model import User
 import bcrypt
 
 router = APIRouter()

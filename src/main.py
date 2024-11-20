@@ -1,8 +1,5 @@
-from fastapi import FastAPI, Depends, HTTPException
-from sqlalchemy.orm import Session
-from sqlmodel import select
-from .config.db import get_session, create_db_and_tables
-from .models.user import User
+from fastapi import FastAPI, Depends
+from .config.db import create_db_and_tables
 from .controllers.user_controller import router as user_router
 import uvicorn
 
