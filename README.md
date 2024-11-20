@@ -5,4 +5,4 @@
  - Fast API
 
 ## ERD
-[!ERD_PICTURE](./erd.png)
+![ERD_PICTURE](./erd.png)
