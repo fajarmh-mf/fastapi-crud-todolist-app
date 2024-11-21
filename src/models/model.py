@@ -2,9 +2,11 @@
 from sqlmodel import SQLModel, Field, Relationship
 from datetime import datetime
 from typing import Optional, List
+import uuid as uuid_interface
 
 class User(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
+    uuid: uuid_interface.UUID = Field(default_factory=uuid_interface.uuid4, unique=True)
     username: str
     password: str
     created_at: datetime = Field(default_factory=datetime.utcnow)
@@ -15,7 +17,8 @@ class User(SQLModel, table=True):
 
 class Agenda(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
-    agenda: str
+    uuid: uuid_interface.UUID = Field(default_factory=uuid_interface.uuid4, unique=True)
+    todo: str
     is_done: bool
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)

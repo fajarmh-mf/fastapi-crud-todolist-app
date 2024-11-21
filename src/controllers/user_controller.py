@@ -56,7 +56,7 @@ def login(body: UserLoginRequest, session: Session = Depends(get_session)):
                                 detail="Invalid username or password")
         
         access_token_expires = timedelta(minutes=30)
-        access_token = create_access_token(data={"sub": user.username}, expires_delta=access_token_expires)
+        access_token = create_access_token(data={"username": user.username, "id": user.id}, expires_delta=access_token_expires)
 
         # Return a successful login message
         return {
